@@ -35,18 +35,18 @@ gulp.task('prod-build', function(){
 
 //Copies css to home directory
 gulp.task('prod-build-css', function(){
-    return gulp.src('public/css/*.css')
+    return gulp.src('public/*.css')
       .pipe(useref())
       .pipe(gulp.dest('.'))
   });
 
 //Minifys the Sass Compiled CSS file
 gulp.task('css-min', function(){
-    return gulp.src('public/css/*.css')
+    return gulp.src('public/*.css')
       .pipe(useref())
       // Minifies only if it's a CSS file
       .pipe(gulpIf('*.css', cssnano()))
-      .pipe(gulp.dest('public/css'))
+      .pipe(gulp.dest('public'))
   });
 
 //Builds the files
