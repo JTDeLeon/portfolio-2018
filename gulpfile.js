@@ -26,6 +26,20 @@ gulp.task('useref', function(){
       .pipe(gulp.dest('public'))
   });
 
+//Copies Index to home directory
+gulp.task('prod-build', function(){
+    return gulp.src('public/*.html')
+      .pipe(useref())
+      .pipe(gulp.dest('.'))
+  });
+
+//Copies css to home directory
+gulp.task('prod-build-css', function(){
+    return gulp.src('public/css/*.css')
+      .pipe(useref())
+      .pipe(gulp.dest('.'))
+  });
+
 //Minifys the Sass Compiled CSS file
 gulp.task('css-min', function(){
     return gulp.src('public/css/*.css')
@@ -35,6 +49,16 @@ gulp.task('css-min', function(){
       .pipe(gulp.dest('public/css'))
   });
 
+//Builds the files
+gulp.task('build', function(){
+    return gulp.series('sass', 'css-min', 'useref');
+  });
+
+//Builds Prod files
+gulp.task('production-build', function(){
+    gulp.series('prod-build', 'prod-build-css');
+    return ;
+  });
 //Builds the files
 gulp.task('build', function(){
     return gulp.series('sass', 'css-min', 'useref');
