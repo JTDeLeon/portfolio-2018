@@ -15,7 +15,7 @@ sass.compiler = require('node-sass');
 gulp.task('sass', function () {
   return gulp.src('app/sass/**/*.scss')
     .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('./public/css'))
+    .pipe(gulp.dest('./public'))
     .pipe(browserSync.stream());
 });
 
@@ -72,7 +72,8 @@ gulp.task('default', function () {
         server: "public"
     });
 
-    gulp.watch('app/sass/**/*.scss', gulp.series('sass', 'css-min'));
-    gulp.watch('app/**/*.html', gulp.series('useref'));
+    gulp.watch('app/sass/**/*.scss', gulp.series('sass', 'css-min', 'prod-build-css'));
+    gulp.watch('public/*.css', gulp.series('prod-build-css'));
+    gulp.watch('app/**/*.html', gulp.series('useref', 'prod-build'));
     gulp.watch('public/*.html').on('change', browserSync.reload);
 });
