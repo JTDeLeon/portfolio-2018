@@ -1,0 +1,51 @@
+body {
+    margin: -20px 0 0 0;
+    font-family: 'Raleway', sans-serif;
+    .header-section {
+        display: flex;
+        height: 100vh;
+        background-color: rgb(37,41,52);
+        padding: 0;
+        margin: 0;
+        .center-text-area {
+            margin: auto;
+            h1 {
+                color: white;
+                font-size: 16pt;
+                line-height: 1.4;
+                #name-top {
+                    color: #E31B6D;
+                    font-family: 'Raleway-semi-bold', sans-serif;
+                }
+        
+            }
+            .top-btn-container {
+                display: flex;
+                button { 
+                    padding: 10px 20px;
+                    font-size: 17px;
+                    background-color: transparent;
+                    border: 2px solid white;
+                    color: white;
+                    cursor: pointer;
+                    margin: auto;
+                }
+
+                button:hover { 
+                    padding: 10px 20px;
+                    font-size: 17px;
+                    background-color: #04C2C9;
+                    border: 2px solid #04C2C9;
+                    color: white;
+                    cursor: pointer;
+                    margin: auto;
+                    
+                    .arrow-to-move { 
+                        transform: rotate(90deg);
+                        transition-duration: .5s;
+                    }
+                }
+            }
+        }
+    }
+}

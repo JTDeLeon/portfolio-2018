@@ -13,7 +13,7 @@ sass.compiler = require('node-sass');
  
 //Compiles Sass and Sends to BrowserSync
 gulp.task('sass', function () {
-  return gulp.src('app/sass/**/*.scss')
+  return gulp.src('app/sass/index.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('./public'))
     .pipe(browserSync.stream());
