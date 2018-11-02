@@ -26,6 +26,20 @@ gulp.task('useref', function(){
       .pipe(gulp.dest('public'))
   });
 
+//Builds the public JS
+gulp.task('useref-js', function(){
+    return gulp.src('app/js/*.js')
+      .pipe(useref())
+      .pipe(gulp.dest('public'))
+  });
+
+//Copies Index to home directory
+gulp.task('prod-build-js', function(){
+  return gulp.src('public/*.js')
+    .pipe(useref())
+    .pipe(gulp.dest('.'))
+});
+
 //Copies Index to home directory
 gulp.task('prod-build', function(){
     return gulp.src('public/*.html')
@@ -75,5 +89,6 @@ gulp.task('default', function () {
     gulp.watch('app/sass/**/*.scss', gulp.series('sass', 'css-min', 'prod-build-css'));
     gulp.watch('public/*.css', gulp.series('prod-build-css'));
     gulp.watch('app/**/*.html', gulp.series('useref', 'prod-build'));
+    gulp.watch('app/**/*.js', gulp.series('useref-js', 'prod-build-js'));
     gulp.watch('public/*.html').on('change', browserSync.reload);
 });
