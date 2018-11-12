@@ -40,6 +40,20 @@ gulp.task('prod-build-js', function(){
     .pipe(gulp.dest('.'))
 });
 
+//Builds the public images
+gulp.task('images-public', function(){
+  return gulp.src('app/images/*')
+    .pipe(useref())
+    .pipe(gulp.dest('public/images'))
+});
+
+//Copies Index to home directory images
+gulp.task('images-home', function(){
+  return gulp.src('public/images/*')
+    .pipe(useref())
+    .pipe(gulp.dest('./images'))
+});
+
 //Copies Index to home directory
 gulp.task('prod-build', function(){
     return gulp.src('public/*.html')
@@ -90,5 +104,6 @@ gulp.task('default', function () {
     gulp.watch('public/*.css', gulp.series('prod-build-css'));
     gulp.watch('app/**/*.html', gulp.series('useref', 'prod-build'));
     gulp.watch('app/**/*.js', gulp.series('useref-js', 'prod-build-js'));
+    // gulp.watch('app/images/*', gulp.series('images-public', 'images-home'));
     gulp.watch('public/*.html').on('change', browserSync.reload);
 });
